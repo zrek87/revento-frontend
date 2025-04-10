@@ -18,10 +18,10 @@ export async function checkSession() {
     if (!response.ok) throw new Error("Session check failed");
 
     const data = await response.json();
-    sessionStatus = data.loggedIn;
+    sessionStatus = data.success; // 
     lastSessionCheck = now;
 
-    return data.loggedIn;
+    return sessionStatus;
   } catch (error) {
     console.error("Error checking session:", error);
     return false;
@@ -41,7 +41,7 @@ export async function extendSession() {
     if (!response.ok) throw new Error("Failed to extend session");
 
     const data = await response.json();
-    sessionStatus = data.loggedIn;
+    sessionStatus = data.success; 
     lastSessionCheck = Date.now();
 
     console.log("Session extended:", data);
